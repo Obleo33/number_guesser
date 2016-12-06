@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+}
+/*header*/
+header {
+  margin: 0;
+  height: 100px;
+  background-color: #404041;
+  text-align: center;
+}
+h1 {
+  margin: 0;
+}
+
+
+/*main*/

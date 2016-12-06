@@ -15,15 +15,16 @@ var userNum = "";
 
 guessButton.addEventListner('click',function(){
   userNum = parseInt(userInput.value);
+  if (userNum === targetNum){
+
+  }else if (userNum<targetNum) {
+
+  }else {
+
+  }
 });
 
-if (userNum === targetNum){
-
-}else if (userNum<targetNum) {
-
-}else {
-  
-}
+// disable buttons
 
 
 console.log(targetNumber);

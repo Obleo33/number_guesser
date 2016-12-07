@@ -2,7 +2,6 @@
 var guessButton = document.getElementById('guessButton');
 var resetButton = document.getElementById('resetButton');
 var clearButton = document.getElementById('clearButton');
-var resetButton = document.getElementById('resetButton');
 
 // input
 var userInput = document.getElementById('userInput');
@@ -16,38 +15,58 @@ var lastGuess = document.querySelector('.lastGuess');
 var guessTitle = document.querySelector('.guessTitle');
 var guessDir = document.querySelector('.guessDir');
 
-var message = function (message,result){
+function minmax(value, min, max){
+  if(value < min || isNaN(parseInt(value)))
+    return min;
+
+  else if(value > max)
+    return max;
+  else
+    return value;
+}
+
+var message = function (message,number,result){
   guessTitle.innerText = message;
-  lastGuess.innerText = userNum;
+  lastGuess.innerText = number;
   guessDir.innerText = result;
 }
 
-message("Guess a number",startNum + " to " + endNum)
+message("Guess a number",userNum,startNum + " to " + endNum)
+
+guessButton, resetButton, clearButton
 
 console.log(targetNum);
 
+// if (userInput.value ===""){
+//  guessButton.disabled = true;
+// }
+// else{
+//   guessButton.disabled = false;
+// }
+
+
 guessButton.addEventListener('click',function(){
   userNum = parseInt(userInput.value);
-  console.log(userNum);
+  userNum = minmax(userNum,startNum,endNum);
   userInput.value = "";
   if (userNum === targetNum){
-    message("You are correct","BOOM!");
+    message("You are correct",userNum,"BOOM!");
   }else if (userNum<targetNum) {
-    message("Your last guess was","That is too low");
+    message("Your last guess was",userNum,"That is too low");
   }else {
-    message("Your last guess was", "That is too high");
+    message("Your last guess was",userNum, "That is too high");
   }
 });
 
 resetButton.addEventListener('click',function(){
   targetNum = Math.floor((Math.random() * endNum) + startNum);
-  message("Guess a number",startNum + " to " + endNum);
-  userNum = ""
+  message("Guess a number",userNum, startNum + " to " + endNum);
+  lastGuess.innerText = "";
   console.log(targetNum);
 });
 
 clearButton.addEventListener('click', function(){
-
+  userInput.value = "";
 })
 
 

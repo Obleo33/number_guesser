@@ -30,35 +30,38 @@ main {
 input {
   display: block;
   margin: auto;
-  margin-top: 10px;
-  width: 200px;
+  margin-top: 20px;
+  width: 90%;
   height: auto;
+  font-size: 20px;
 }
 
 button {
   display: block;
   margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   border: none;
   border-radius: 10px;
-  width: 200px;
+  width: 90%;
   background-color: #929497;
+  font-size: 20px;
   color: #ffffff;
   height: auto;
 }
 
 .guessTitle {
-  color: #e6e7e8;
+  color: #404041;
   font-size: 20px;
 }
 
 .lastGuess {
   color: #ed458b;
   font-size: 150px;
+  height: 175px;
 }
 
 .guessDir {
-  color: #e6e7e8;
+  color: #404041;
   font-size: 20px;
 }

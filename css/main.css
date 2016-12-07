@@ -5,15 +5,16 @@ body {
 /*header*/
 header {
   margin: 0;
-  height: 100px;
+  height: 70px;
   background-color: #404041;
   text-align: center;
 }
 
 h1 {
   margin: 0;
-  padding-top:20px;
+  padding-top:15px;
   font-weight: 700;
+  font-size: 35px;
   color: #ed458b;
 }
 
@@ -22,3 +23,42 @@ h1 span {
   color: #e6e7e8;
 }
 /*main*/
+main {
+  text-align: center;
+}
+
+input {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  width: 200px;
+  height: auto;
+}
+
+button {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  width: 200px;
+  background-color: #929497;
+  color: #ffffff;
+  height: auto;
+}
+
+.guessTitle {
+  color: #e6e7e8;
+  font-size: 20px;
+}
+
+.lastGuess {
+  color: #ed458b;
+  font-size: 150px;
+}
+
+.guessDir {
+  color: #e6e7e8;
+  font-size: 20px;
+}

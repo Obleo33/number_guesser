@@ -2,6 +2,9 @@
 var guessButton = document.getElementById('guessButton');
 var resetButton = document.getElementById('resetButton');
 var clearButton = document.getElementById('clearButton');
+var settingsButton = document.getElementById('settingsButton');
+var updateMinButton = document.getElementById('updateMin');
+var updateMaxButton = document.getElementById('updateMax');
 // input
 var userInput = document.getElementById('userInput');
 // global variables
@@ -12,7 +15,7 @@ var userNum = "";
 
 
 // helper functions
-var message = function (message,number,result){
+function message(message,number,result){
   var lastGuess = document.querySelector('.lastGuess');
   var guessTitle = document.querySelector('.guessTitle');
   var guessDir = document.querySelector('.guessDir');
@@ -21,20 +24,19 @@ var message = function (message,number,result){
   guessDir.innerText = result;
 };
 
-var minmax = function(value, min, max){
-
+function minmax(value, min, max){
   if(isNaN(value) === true){
     message("You must enter a number","","");
   }else if(value < min){
-    message("the minimum number is "+ startNum,"","choose a number " + startNum + " to " + endNum);
+    message("Minimum number is "+ startNum,"","choose a number " + startNum + " to " + endNum);
   }else if(value > max){
-    message("the maximum number is " + endNum,"", "choose a number " + startNum + " to " + endNum);
+    message("Maximum number is " + endNum,"", "choose a number " + startNum + " to " + endNum);
   }else{
     submit(userNum);
   }
 }
 
-var submit = function (userNum){
+function submit(userNum){
   if (userNum === targetNum){
     message("You are correct",userNum,"BOOM!");
   }else if (userNum<targetNum) {
@@ -43,6 +45,13 @@ var submit = function (userNum){
     message("Your last guess was",userNum, "That is too high");
   }
 }
+
+function disableButton(button,value){
+  console.log(button);
+  document.getElementById(button).disabled = value;
+}
+
+// main
 
 message("Guess a number",userNum,startNum + " to " + endNum);
 
@@ -57,22 +66,43 @@ resetButton.addEventListener('click',function(){
   targetNum = Math.floor((Math.random() * endNum) + startNum);
   message("Guess a number","", startNum + " to " + endNum);
   console.log(targetNum);
-  document.getElementById("resetButton").disabled = true;
-  document.getElementById("guessButton").disabled = true;
-  document.getElementById("clearButton").disabled = true;
+  disableButton("resetButton",1);
+  disableButton("guessButton",1);
+  disableButton("clearButton",1);
 });
 
 clearButton.addEventListener('click', function(){
   userInput.value = "";
-  document.getElementById("guessButton").disabled = true;
-  document.getElementById("clearButton").disabled = true;
+  disableButton("guessButton",1);
+  disableButton("clearButton",1);
 });
 
 userInput.addEventListener('keyup', function(){
-  document.getElementById("guessButton").disabled = false;
-  document.getElementById("clearButton").disabled = false;
+  disableButton("guessButton",0);
+  disableButton("clearButton",0);
 })
 
-guessButton.addEventListne
+// Settings
+
+settingsButton.addEventListener('click', function(){
+  var settingsWin = document.getElementById('settings')
+  settingsWin.classList.toggle('hidden');
+})
+
+minNum.addEventListener('keyup', function(){
+  disableButton("updateMin",0);
+})
+
+maxNum.addEventListener('keyup', function(){
+  disableButton("updateMax",0);
+})
+
+updateminButton.addEventListener('click', function(){
+
+})
+
+updateMaxButton.addEventListener('click', function(){
+  
+})
 
 console.log(targetNum);

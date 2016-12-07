@@ -3,8 +3,7 @@ var guessButton = document.getElementById('guessButton');
 var resetButton = document.getElementById('resetButton');
 var clearButton = document.getElementById('clearButton');
 var settingsButton = document.getElementById('settingsButton');
-var updateMinButton = document.getElementById('updateMin');
-var updateMaxButton = document.getElementById('updateMax');
+var updateValuesButton = document.getElementById('updateValues');
 // input
 var userInput = document.getElementById('userInput');
 // global variables
@@ -13,6 +12,7 @@ var endNum = 100;
 var targetNum = Math.floor((Math.random() * endNum) + startNum);
 var userNum = "";
 
+console.log(targetNum);
 
 // helper functions
 function message(message,number,result){
@@ -64,8 +64,9 @@ guessButton.addEventListener('click',function(){
 
 resetButton.addEventListener('click',function(){
   targetNum = Math.floor((Math.random() * endNum) + startNum);
+  startNum = 1;
+  endNum = 100;
   message("Guess a number","", startNum + " to " + endNum);
-  console.log(targetNum);
   disableButton("resetButton",1);
   disableButton("guessButton",1);
   disableButton("clearButton",1);
@@ -90,19 +91,37 @@ settingsButton.addEventListener('click', function(){
 })
 
 minNum.addEventListener('keyup', function(){
-  disableButton("updateMin",0);
+  disableButton("updateValues",0);
 })
 
 maxNum.addEventListener('keyup', function(){
-  disableButton("updateMax",0);
+  disableButton("updateValues",0);
 })
 
-updateminButton.addEventListener('click', function(){
-
+updateValuesButton.addEventListener('click', function(){
+  startNum = parseInt(minNum.value);
+  endNum = parseInt(maxNum.value);
+  console.log(startNum + " " + endNum);
+  document.getElementById('minMaxMsg')
+  if (isNaN(startNum)=== true || isNaN(endNum)=== true){
+    minMaxMsg.innerText = "You must set a min AND max";
+    minNum.value = "";
+    maxNum.value = "";
+    disableButton("updateValues",1);
+    disableButton("resetButton",0);
+  }else if(startNum > endNum){
+    minMaxMsg.innerText = "Your max must be higher than the min"
+    minNum.value = "";
+    maxNum.value = "";
+    disableButton("updateValues",1);
+    disableButton("resetButton",0);
+  }else{
+    targetNum = Math.floor((Math.random() * endNum) + startNum);
+    message("Guess a number","", startNum + " to " + endNum);
+    minNum.value = "";
+    maxNum.value = "";
+    minMaxMsg.innerText = "Set a new range for the game";
+    disableButton("updateValues",1);
+    disableButton("resetButton",0);
+  };
 })
-
-updateMaxButton.addEventListener('click', function(){
-  
-})
-
-console.log(targetNum);

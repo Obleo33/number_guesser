@@ -110,7 +110,7 @@ section button {
     }
     Section input {
       display: inline-block;
-      width: 60%;
+      width: 30%;
     }
     Section button{
       display: inline-block;
@@ -136,7 +136,7 @@ section button {
     }
 
     Section input {
-      max-width: 426px;
+      max-width: 216px;
     }
     Section button{
       max-width: 210px;

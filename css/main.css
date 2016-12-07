@@ -34,22 +34,27 @@ input {
   height: auto;
   font-size: 20px;
 }
-
 button {
   display: block;
   margin: 15px auto 15px;
   border: none;
   border-radius: 10px;
   width: 90%;
-  background-color: #929497;
   font-size: 20px;
-  color: #ffffff;
   height: auto;
+  background-color: #929497;
+  color: #ffffff;
+}
+
+button:disabled {
+  background-color: #d0d2d3;
+  color: #ffffff;
 }
 
 .guessTitle {
   color: #404041;
   font-size: 20px;
+  height: 25px;
 }
 
 .lastGuess {
@@ -61,6 +66,7 @@ button {
 .guessDir {
   color: #404041;
   font-size: 20px;
+  height: 25px;
 }
 
 

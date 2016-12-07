@@ -50,16 +50,29 @@ guessButton.addEventListener('click',function(){
   userNum = parseInt(userInput.value);
   minmax(userNum,startNum,endNum);
   userInput.value = "";
+  document.getElementById("resetButton").disabled = false;
 });
 
 resetButton.addEventListener('click',function(){
   targetNum = Math.floor((Math.random() * endNum) + startNum);
   message("Guess a number","", startNum + " to " + endNum);
   console.log(targetNum);
+  document.getElementById("resetButton").disabled = true;
+  document.getElementById("guessButton").disabled = true;
+  document.getElementById("clearButton").disabled = true;
 });
 
 clearButton.addEventListener('click', function(){
   userInput.value = "";
+  document.getElementById("guessButton").disabled = true;
+  document.getElementById("clearButton").disabled = true;
 });
+
+userInput.addEventListener('keyup', function(){
+  document.getElementById("guessButton").disabled = false;
+  document.getElementById("clearButton").disabled = false;
+})
+
+guessButton.addEventListne
 
 console.log(targetNum);

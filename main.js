@@ -46,7 +46,7 @@ function minmax(value, min, max){
 
 function submit(userNum){
   if (userNum === targetNum){
-    message("The number was " + targetNum,"BOOM!","Level up! -10 to min and +10 to max");
+    message("The number was " + targetNum,"BOOM!","Level up! next game -10 to min and +10 to max");
     endNum += 10;
     startNum -= 10;
     games += 1;
@@ -158,5 +158,6 @@ updateValuesButton.addEventListener('click', function(){
     console.log(targetNum);
     var settingsWin = document.getElementById('settings')
     settingsWin.classList.toggle('hidden');
+    document.getElementById('userInput').placeholder="Enter your guess";
   };
 })

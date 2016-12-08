@@ -9,14 +9,21 @@ var userInput = document.getElementById('userInput');
 // global variables
 var startNum = 1;
 var endNum = 100;
-var targetNum = Math.floor((Math.random() * endNum) + startNum);
+// var targetNum = Math.floor((Math.random() * endNum) + startNum);
 var userNum = "";
 var guesses = 0;
 var games = 0;
 
-console.log(targetNum);
+
 
 // helper functions
+function generate(end,start){
+  targetNum = Math.floor(Math.random() * (end - start + 1) + start);
+}
+
+generate(endNum,startNum);
+console.log(targetNum);
+
 function message(message,number,result){
   var lastGuess = document.querySelector('.lastGuess');
   var guessTitle = document.querySelector('.guessTitle');
@@ -46,7 +53,8 @@ function submit(userNum){
     games += 1;
     console.log(games);
     console.log(guesses);
-    targetNum = Math.floor((Math.random() * endNum) + startNum);
+    generate(endNum,startNum);
+    console.log(targetNum);
     resetButton.innerText = "Start a new game";
   }else if (userNum<targetNum) {
     message("Your last guess was",userNum,"That is too low");
@@ -64,7 +72,8 @@ function disableButton(button,value){
 
 // main
 
-message("Guess a number",userNum,startNum + " to " + endNum);
+message("Guess a number "+ startNum + " to " + endNum,userNum,"");
+
 
 guessButton.addEventListener('click',function(){
   userNum = parseInt(userInput.value);
@@ -77,11 +86,12 @@ guessButton.addEventListener('click',function(){
 });
 
 resetButton.addEventListener('click',function(){
-  targetNum = Math.floor((Math.random() * endNum) + startNum);
+  generate(endNum,startNum);
   message("Guess a number","", startNum + " to " + endNum);
   disableButton("resetButton",1);
   disableButton("guessButton",1);
   disableButton("clearButton",1);
+  resetButton.innerText = "Reset";
   console.log(targetNum);
 });
 
@@ -129,13 +139,13 @@ updateValuesButton.addEventListener('click', function(){
     disableButton("updateValues",1);
     disableButton("resetButton",0);
   }else{
-    message("Guess a number","", startNum + " to " + endNum);
+    message("Guess a number " + startNum + " to " + endNum,"","");
     minNum.value = "";
     maxNum.value = "";
     minMaxMsg.innerText = "Set a new range for the game";
-    disableButton("updateValues",1);
-    disableButton("resetButton",0);
-    targetNum = Math.floor((Math.random() * endNum) + startNum);
+    // disableButton("updateValues",1);
+    // disableButton("resetButton",0);
+    generate(endNum,startNum)
     console.log(targetNum);
   };
 })

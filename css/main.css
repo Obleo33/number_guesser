@@ -162,3 +162,58 @@ section button {
     }
 
 }
+
+#slideout {
+    position: fixed;
+    top: 225px;
+    left: 0;
+    width: 35px;
+    padding: 12px 0;
+    text-align: center;
+    background: #ed458b;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -webkit-border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
+}
+
+/*test*/
+#slideout_inner {
+    position: fixed;
+    top: 225px;
+    left: -125px;
+    background: #ed458b;
+    width: 75px;
+    padding: 25px;
+    height: 130px;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    text-align: left;
+    -webkit-border-radius: 0 0 5px 0;
+    -moz-border-radius: 0 0 5px 0;
+    border-radius: 0 0 5px 0;
+
+}
+
+#slideout img {
+  height: auto;
+  width: 20px;
+  opacity: .5;
+}
+#slideout_inner textarea {
+    width: 190px;
+    height: 100px;
+    margin-bottom: 6px;
+    opacity: .5;
+}
+#slideout:hover {
+    left: 125px;
+}
+#slideout:hover #slideout_inner {
+    left: 0;
+}

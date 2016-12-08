@@ -11,6 +11,8 @@ var startNum = 1;
 var endNum = 100;
 var targetNum = Math.floor((Math.random() * endNum) + startNum);
 var userNum = "";
+var guesses = 0;
+var games = 0;
 
 console.log(targetNum);
 
@@ -38,11 +40,20 @@ function minmax(value, min, max){
 
 function submit(userNum){
   if (userNum === targetNum){
-    message("You are correct",userNum,"BOOM!");
+    message("The number was " + targetNum,"BOOM!","Level up! -10 to min and +10 to max");
+    endNum += 10;
+    startNum -= 10;
+    games += 1;
+    console.log(games);
+    console.log(guesses);
+    targetNum = Math.floor((Math.random() * endNum) + startNum);
+    resetButton.innerText = "Start a new game";
   }else if (userNum<targetNum) {
     message("Your last guess was",userNum,"That is too low");
+    guesses += 1;
   }else {
     message("Your last guess was",userNum, "That is too high");
+    guesses += 1;
   }
 }
 
@@ -59,17 +70,19 @@ guessButton.addEventListener('click',function(){
   userNum = parseInt(userInput.value);
   minmax(userNum,startNum,endNum);
   userInput.value = "";
+  disableButton("resetButton",1);
+  disableButton("guessButton",1);
+  disableButton("clearButton",1);
   document.getElementById("resetButton").disabled = false;
 });
 
 resetButton.addEventListener('click',function(){
   targetNum = Math.floor((Math.random() * endNum) + startNum);
-  startNum = 1;
-  endNum = 100;
   message("Guess a number","", startNum + " to " + endNum);
   disableButton("resetButton",1);
   disableButton("guessButton",1);
   disableButton("clearButton",1);
+  console.log(targetNum);
 });
 
 clearButton.addEventListener('click', function(){
@@ -116,12 +129,13 @@ updateValuesButton.addEventListener('click', function(){
     disableButton("updateValues",1);
     disableButton("resetButton",0);
   }else{
-    targetNum = Math.floor((Math.random() * endNum) + startNum);
     message("Guess a number","", startNum + " to " + endNum);
     minNum.value = "";
     maxNum.value = "";
     minMaxMsg.innerText = "Set a new range for the game";
     disableButton("updateValues",1);
     disableButton("resetButton",0);
+    targetNum = Math.floor((Math.random() * endNum) + startNum);
+    console.log(targetNum);
   };
 })

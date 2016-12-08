@@ -74,7 +74,6 @@ function disableButton(button,value){
 
 message("Guess a number "+ startNum + " to " + endNum,userNum,"");
 
-
 guessButton.addEventListener('click',function(){
   userNum = parseInt(userInput.value);
   minmax(userNum,startNum,endNum);
@@ -83,6 +82,7 @@ guessButton.addEventListener('click',function(){
   disableButton("guessButton",1);
   disableButton("clearButton",1);
   document.getElementById("resetButton").disabled = false;
+  document.getElementById('userInput').placeholder="Guess a number "+ startNum + " to " + endNum;
 });
 
 resetButton.addEventListener('click',function(){
@@ -101,7 +101,7 @@ resetButton.addEventListener('click',function(){
   console.log(targetNum);
   var lastGuess = document.querySelector('.lastGuess');
   lastGuess.classList.remove("boom");
-
+  document.getElementById('userInput').placeholder="Enter your guess";
 });
 
 clearButton.addEventListener('click', function(){

@@ -9,7 +9,6 @@ var userInput = document.getElementById('userInput');
 // global variables
 var startNum = 1;
 var endNum = 100;
-// var targetNum = Math.floor((Math.random() * endNum) + startNum);
 var userNum = "";
 var guesses = 0;
 var games = 0;
@@ -56,6 +55,8 @@ function submit(userNum){
     generate(endNum,startNum);
     console.log(targetNum);
     resetButton.innerText = "Start a new game";
+    var lastGuess = document.querySelector('.lastGuess');
+    lastGuess.classList.add("boom");
   }else if (userNum<targetNum) {
     message("Your last guess was",userNum,"That is too low");
     guesses += 1;
@@ -66,7 +67,6 @@ function submit(userNum){
 }
 
 function disableButton(button,value){
-  console.log(button);
   document.getElementById(button).disabled = value;
 }
 
@@ -86,13 +86,22 @@ guessButton.addEventListener('click',function(){
 });
 
 resetButton.addEventListener('click',function(){
-  generate(endNum,startNum);
-  message("Guess a number","", startNum + " to " + endNum);
+  if(resetButton.innerText === "Reset"){
+    startNum = 1;
+    endNum = 100;
+    generate(endNum,startNum);
+  }else{
+    generate(endNum,startNum);
+  }
+  message("Guess a number " + startNum + " to " + endNum,"", "");
   disableButton("resetButton",1);
   disableButton("guessButton",1);
   disableButton("clearButton",1);
   resetButton.innerText = "Reset";
   console.log(targetNum);
+  var lastGuess = document.querySelector('.lastGuess');
+  lastGuess.classList.remove("boom");
+
 });
 
 clearButton.addEventListener('click', function(){
@@ -147,5 +156,7 @@ updateValuesButton.addEventListener('click', function(){
     // disableButton("resetButton",0);
     generate(endNum,startNum)
     console.log(targetNum);
+    var settingsWin = document.getElementById('settings')
+    settingsWin.classList.toggle('hidden');
   };
 })
